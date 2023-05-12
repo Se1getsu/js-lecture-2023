@@ -18,6 +18,9 @@ window.onload = function(){
         var div = document.createElement('div');
         div.className = 'card back';
         div.number = arr[i];
+        var img = new Image();
+        img.src = 'images/card'+ (arr[i]+1) +'.png';
+        div.img = img
         div.onclick = turn;
         panel.appendChild(div);
     }
@@ -46,7 +49,7 @@ function turn(e){
     // 裏向きのカードをクリックした場合
     if (div.className == 'card back') {
         div.className = 'card';
-        div.innerHTML = '<img src="images/card' + (div.number + 1) + '.png" />';
+        div.appendChild(div.img);
     }else{
         // 数字が表示されているカードは return
         return;
