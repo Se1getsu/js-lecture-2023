@@ -2,7 +2,8 @@ var backTimer;
 var flgFirst = true;
 var cardFirst;
 var maxPair = 9;
- 
+var cardImage = [];
+
 window.onload = function(){
     var arr = [];
  
@@ -17,12 +18,14 @@ window.onload = function(){
     for (i = 0; i < (maxPair * 2); i++) {
         var div = document.createElement('div');
         div.className = 'card back';
-        div.number = arr[i];
-        var img = new Image();
-        img.src = 'images/card'+ (arr[i]+1) +'.png';
-        div.img = img
+        div.dataset.index = i;
+        div.dataset.number = arr[i];
         div.onclick = turn;
         panel.appendChild(div);
+
+        var img = new Image();
+        img.src = 'images/card'+ (arr[i]+1) +'.png';
+        cardImage.push(img);
     }
 }
  
@@ -49,7 +52,7 @@ function turn(e){
     // 裏向きのカードをクリックした場合
     if (div.className == 'card back') {
         div.className = 'card';
-        div.appendChild(div.img);
+        div.appendChild(cardImage[div.dataset.index]);
     }else{
         // 数字が表示されているカードは return
         return;
@@ -63,7 +66,7 @@ function turn(e){
     // 2枚目の処理
     } else {
         // 数字が1枚目と一致する場合
-        if (cardFirst.number == div.number) {
+        if (cardFirst.dataset.number == div.dataset.number) {
             backTimer = setTimeout(function() {
                 div.className = 'card finish';
                 cardFirst.className = 'card finish';
