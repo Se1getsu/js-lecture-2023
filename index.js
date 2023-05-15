@@ -1,41 +1,40 @@
-var backTimer;
-var flgFirst = true;
-var cardFirst;
-var maxPair = 9;
-var cardImage = [];
+let backTimer;
+let flgFirst = true;
+let cardFirst;
+const maxPair = 9;
+const cardImage = [];
 
 window.onload = function () {
-    var arr = [];
+    const arr = [];
 
-    for (var i = 0; i < maxPair; i++) {
+    for (let i = 0; i < maxPair; i++) {
         arr.push(i);
         arr.push(i);
     }
 
     shuffle(arr);
 
-    var panel = document.getElementById('panel');
+    const panel = document.getElementById('panel');
     for (i = 0; i < maxPair * 2; i++) {
-        var div = document.createElement('div');
+        const div = document.createElement('div');
         div.className = 'card back';
         div.dataset.index = i;
         div.dataset.number = arr[i];
         div.onclick = turn;
         panel.appendChild(div);
 
-        var img = new Image();
+        const img = new Image();
         img.src = 'images/card' + (arr[i] + 1) + '.png';
         cardImage.push(img);
     }
 };
 
 function shuffle(arr) {
-    var n = arr.length;
-    var temp, i;
+    let n = arr.length;
 
     while (n) {
-        i = Math.floor(Math.random() * n--);
-        temp = arr[n];
+        const i = Math.floor(Math.random() * n--);
+        const temp = arr[n];
         arr[n] = arr[i];
         arr[i] = temp;
     }
@@ -43,7 +42,7 @@ function shuffle(arr) {
 }
 
 function turn(e) {
-    var div = e.currentTarget;
+    const div = e.currentTarget;
 
     // カードのタイマー処理が動作中
     if (backTimer) return;
