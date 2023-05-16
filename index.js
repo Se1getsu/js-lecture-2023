@@ -1,7 +1,7 @@
 var backTimer;
 var flgFirst = true;
 var cardFirst;
-var maxPair = 9;
+var maxPair = 20;
 var cardImage = [];
 
 window.onload = function(){
