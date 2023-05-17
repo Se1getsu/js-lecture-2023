@@ -1,3 +1,5 @@
+import {shuffle} from './js/utils.mjs';
+
 let backTimer;
 let flgFirst = true;
 let cardFirst;
@@ -15,7 +17,7 @@ window.onload = function () {
     shuffle(arr);
 
     const panel = document.getElementById('panel');
-    for (i = 0; i < maxPair * 2; i++) {
+    for (let i = 0; i < maxPair * 2; i++) {
         const div = document.createElement('div');
         div.className = 'card back';
         div.dataset.index = i;
@@ -28,18 +30,6 @@ window.onload = function () {
         cardImage.push(img);
     }
 };
-
-function shuffle(arr) {
-    let n = arr.length;
-
-    while (n) {
-        const i = Math.floor(Math.random() * n--);
-        const temp = arr[n];
-        arr[n] = arr[i];
-        arr[i] = temp;
-    }
-    return arr;
-}
 
 function turn(e) {
     const div = e.currentTarget;
