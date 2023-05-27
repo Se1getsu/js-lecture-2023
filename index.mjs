@@ -1,4 +1,4 @@
-import {shuffle} from './js/utils.mjs';
+import { shuffle } from './js/utils.mjs';
 
 let backTimer;
 let flgFirst = true;
@@ -37,8 +37,8 @@ function turn(e) {
     // カードのタイマー処理が動作中
     if (backTimer) return;
 
-    // 裏向きのカードをクリックした場合
     if (div.classList.contains('back')) {
+        // 裏向きのカードをクリックした場合
         div.classList.remove('back');
         div.appendChild(cardImage[div.dataset.index]);
     } else {
@@ -46,23 +46,21 @@ function turn(e) {
         return;
     }
 
-    // 1枚目の処理
     if (flgFirst) {
+        // 1枚目の処理
         cardFirst = div;
         flgFirst = false;
-
-        // 2枚目の処理
     } else {
-        // 数字が1枚目と一致する場合
+        // 2枚目の処理
         if (cardFirst.dataset.number == div.dataset.number) {
+            // 数字が1枚目と一致する場合
             backTimer = setTimeout(function () {
                 div.classList.add('finish');
                 cardFirst.classList.add('finish');
                 backTimer = NaN;
             }, 500);
-
-            // 一致しない場合
         } else {
+            // 一致しない場合
             backTimer = setTimeout(function () {
                 div.classList.add('back');
                 div.innerHTML = '';
@@ -72,7 +70,6 @@ function turn(e) {
                 backTimer = NaN;
             }, 500);
         }
-
         flgFirst = true;
     }
 }
