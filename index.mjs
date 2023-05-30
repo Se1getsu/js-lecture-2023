@@ -6,7 +6,14 @@ let cardFirst;
 const maxPair = 9;
 const cardImage = [];
 
-window.onload = function () {
+// HTML のパース完了後まで initialize の実行を遅延させるための処理
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+} else {
+    initialize();
+}
+
+function initialize() {
     const arr = [];
 
     for (let i = 0; i < maxPair; i++) {
@@ -29,7 +36,7 @@ window.onload = function () {
         img.src = 'images/card' + (arr[i] + 1) + '.png';
         cardImage.push(img);
     }
-};
+}
 
 function turn(e) {
     const div = e.currentTarget;
