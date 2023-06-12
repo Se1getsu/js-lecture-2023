@@ -1,0 +1,27 @@
+#panel {
+    width: calc(120px * 0.7 * 10);
+    height: calc(190px * 0.7 * 4);
+}
+
+.card {
+    width: 120px;
+    height: 190px;
+    float: left;
+    cursor: pointer;
+}
+
+.card img {
+    width: 120px;
+    height: 190px;
+}
+
+/* 裏の状態 */
+.back {
+    background-image: url('images/back.jpeg');
+    background-size: 120px 190px;
+}
+
+/* 終了時 */
+.finish {
+    cursor: default;
+}
