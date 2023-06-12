@@ -4,6 +4,7 @@ let backTimer;
 let flgFirst = true;
 let cardFirst;
 const maxPair = 20;
+const maxDummy = 16;
 const cardImage = [];
 
 // HTML のパース完了後まで initialize の実行を遅延させるための処理
@@ -16,10 +17,20 @@ if (document.readyState === 'loading') {
 function initialize() {
     const arr = [];
 
+    const lost = Math.floor(Math.random() * maxPair);
     for (let i = 0; i < maxPair; i++) {
-        arr.push(i);
-        arr.push(i);
+        if (i != lost) {
+            arr.push(i);
+            arr.push(i);
+        }
     }
+    let dummy_a = Math.floor(Math.random() * maxDummy);
+    let dummy_b = Math.floor(Math.random() * (maxDummy-1));
+    if (dummy_a <= dummy_b) { dummy_b++; }
+    console.log(dummy_a);
+    console.log(dummy_b);
+    arr.push(-dummy_a-1);
+    arr.push(-dummy_b-1);
 
     shuffle(arr);
 
@@ -33,7 +44,11 @@ function initialize() {
         panel.appendChild(div);
 
         const img = new Image();
-        img.src = 'images/card' + (arr[i] + 1) + '.png';
+        if (arr[i] >= 0) {
+            img.src = 'images/card' + (arr[i] + 1) + '.png';
+        } else {
+            img.src = 'images/dummy' + (-arr[i]) + '.png';
+        }
         cardImage.push(img);
     }
 }
