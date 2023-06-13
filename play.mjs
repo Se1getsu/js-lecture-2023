@@ -64,7 +64,7 @@ function turn(e) {
         div.classList.remove('back');
         div.appendChild(cardImage[div.dataset.index]);
     } else {
-        // 数字が表示されているカードは return
+        // 表向きのカードは return
         return;
     }
 
